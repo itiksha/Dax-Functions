@@ -1,5 +1,17 @@
 ﻿EVALUATE 
 
+-- Beginner Roll up funciton
+
+
+SUMMARIZE(
+    'Onyx Data -DataDNA Dataset Chal', 
+    ROLLUP('Onyx Data -DataDNA Dataset Chal'[ProductName]),
+    "Total Price", FORMAT(SUM('Onyx Data -DataDNA Dataset Chal'[TotalPrice]), "###,###")
+)
+
+
+
+-- Extra column with Subtotal
 SUMMARIZE(
     'Onyx Data -DataDNA Dataset Chal',
     ROLLUP(
