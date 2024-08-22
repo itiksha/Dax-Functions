@@ -9,6 +9,21 @@ SUMMARIZE(
     "Total Price", FORMAT(SUM('Onyx Data -DataDNA Dataset Chal'[TotalPrice]), "###,###")
 )
 
+-- Total Name
+
+EVALUATE 
+
+SUMMARIZE(
+    'Onyx Data -DataDNA Dataset Chal', 4 
+    ROLLUP('Onyx Data -DataDNA Dataset Chal'[ProductName]),
+    "Product Name", 
+    IF(
+        NOT ISINSCOPE('Onyx Data -DataDNA Dataset Chal'[ProductName]),
+        "Total",
+        'Onyx Data -DataDNA Dataset Chal'[ProductName]
+    ),
+    "Total Price", FORMAT(SUM('Onyx Data -DataDNA Dataset Chal'[TotalPrice]), "###,###")
+)
 
 
 -- Extra column with Subtotal
