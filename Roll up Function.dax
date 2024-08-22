@@ -1,0 +1,36 @@
+﻿EVALUATE 
+
+SUMMARIZE(
+    'Onyx Data -DataDNA Dataset Chal',
+    ROLLUP(
+        'Onyx Data -DataDNA Dataset Chal'[ProductName],
+        'Onyx Data -DataDNA Dataset Chal'[Gender]
+    ),
+    "Total Sales", SUM('Onyx Data -DataDNA Dataset Chal'[TotalPrice]),
+    "Product Name", 
+    IF(
+        ISINSCOPE('Onyx Data -DataDNA Dataset Chal'[Gender]),
+        'Onyx Data -DataDNA Dataset Chal'[ProductName],
+        'Onyx Data -DataDNA Dataset Chal'[ProductName] & " 𝗦𝘂𝗯𝘁𝗼𝘁𝗮𝗹"
+    )
+)
+
+//Explanation:
+//EVALUATE:
+//
+//Executes and returns the results of the DAX query, displaying the table created by the SUMMARIZE function.
+//SUMMARIZE:
+//
+//The SUMMARIZE function creates a new table that groups the data by the specified columns and computes additional columns, such as "Total Sales" and "Product Name".
+//ROLLUP:
+//
+//The ROLLUP function generates additional subtotal rows. In this case, it groups by ProductName and then by Gender, adding subtotals for each ProductName and an overall grand total.
+//"Total Sales", SUM('Onyx Data -DataDNA Dataset Chal'[TotalPrice]):
+//
+//Calculates the sum of TotalPrice for each combination of ProductName and Gender, as well as for subtotal and grand total rows.
+//"Product Name", IF(...):
+//
+//Customizes the label for the ProductName column in the subtotal rows:
+//ISINSCOPE('Onyx Data -DataDNA Dataset Chal'[Gender]): Checks if the current row is within the Gender group.
+//If true (meaning it's not a subtotal row), it shows the ProductName as is.
+//If false (meaning it's a subtotal row), it appends " Subtotal" to the ProductName to distinguish these rows.
