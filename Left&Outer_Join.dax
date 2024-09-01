@@ -1,0 +1,37 @@
+﻿DEFINE
+    VAR InnerJoinedTable =
+    
+    
+    SELECTCOLUMNS( 
+    
+        NATURALINNERJOIN (
+            'Sales Table',
+            'Products Table'
+        ),
+        "ProductName", 'Products Table'[ProductName], 
+        "Quantity", 'Sales Table'[Quantity], 
+        "SalesAmount", 'Sales Table'[SalesAmount])
+
+
+ VAR OuterJoinedTable =
+    
+    
+    SELECTCOLUMNS( 
+    
+        NaturalLeftOuterJoin (
+            'Sales Table',
+            'Products Table'
+        ),
+        "ProductName", 'Products Table'[ProductName], 
+        "Quantity", 'Sales Table'[Quantity], 
+        "SalesAmount", 'Sales Table'[SalesAmount])
+        
+        
+EVALUATE
+InnerJoinedTable
+
+
+        
+EVALUATE
+OuterJoinedTable
+
